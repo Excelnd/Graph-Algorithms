@@ -8,7 +8,7 @@ public class DFS {
     private Stack<Vertex> stack;
 
     public DFS() {
-
+        this.stack = new Stack<>();
     }
 
     public void dfs(List<Vertex> vertexList) {
@@ -21,8 +21,24 @@ public class DFS {
         }
     }
 
-    private void dfsWithStack(Vertex v) {
+    private void dfsWithStack(Vertex rootVertex) {
 
+        this.stack.add(rootVertex);
+        rootVertex.setVisited(true);
+
+        while(!stack.isEmpty()) {
+
+            Vertex actualVertex = this.stack.pop();
+            System.out.println(actualVertex + " ");
+
+            for(Vertex v: actualVertex.getNeigbhourList()) {
+                if(!v.isVisited()) {
+                    v.setVisited(true);
+                    this.stack.push(v);
+                }
+            }
+
+        }
     }
 
 
